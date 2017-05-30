@@ -1,0 +1,50 @@
+{
+  "name": "bit-docs-playground",
+  "version": "1.0.0",
+  "description": "Playground for bit-docs.",
+  "main": "server.js",
+  "scripts": {
+    "install": "bit-docs && npm run gen",
+    "gen": "./patch.sh && bit-docs -d",
+    "start": "node server.js",
+    "cache-bust": "rm -rf ./doc ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/templates ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/static"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bit-docs/bit-docs-prettify"
+  },
+  "author": "Bitovi",
+  "license": "MIT",
+  "devDependencies": {
+    "bit-docs": "*",
+    "cheerio": "*",
+    "chokidar": "*",
+    "express": "*",
+    "express-interceptor": "*",
+    "reload": "*"
+  },
+  "bit-docs": {
+    "dependencies": {
+      "bit-docs-glob-finder": "*",
+      "bit-docs-dev": "*",
+      "bit-docs-generate-html": "bit-docs/bit-docs-generate-html",
+      "bit-docs-js": "bit-docs/bit-docs-js#signature-template",
+      "bit-docs-prettify": "*"
+    },
+    "glob": {
+      "pattern": "docs/**/*.{js,md}"
+    },
+    "parent": "playground",
+    "minifyBuild": false
+  },
+  "engines": {
+    "node": "6.9.x"
+  },
+  "keywords": [
+    "node",
+    "glitch",
+    "bit-docs",
+    "example",
+    "demo"
+  ]
+}
