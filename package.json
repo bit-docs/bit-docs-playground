@@ -7,7 +7,7 @@
     "install": "bit-docs && npm run gen",
     "gen": "./patch.sh && bit-docs -d",
     "start": "node server.js",
-    "cache-bust": "rm -rf ./doc ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/templates ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/static"
+    "cache-bust": "rm -rf ./doc ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/templates ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/static && bit-docs -f"
   },
   "repository": {
     "type": "git",
