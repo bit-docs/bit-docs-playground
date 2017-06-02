@@ -1,0 +1,14 @@
+{
+  "install": {
+    "include": [
+      "^package\\.json$"
+    ]
+  },
+  "restart": {
+    "include": [
+      "server.js",
+      "glitch-please.js"
+    ]
+  },
+  "throttle": 100
+}
