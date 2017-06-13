@@ -70,7 +70,21 @@ module.exports = function(watchPlease, runPlease, staticPlease) {
     // Appends a script tag at the end of the response body 
     intercept(body, send) {
       const $document = cheerio.load(body);
-      $document('body').append('<script src="reload/reload-client.js"></script>');
+      $document('body').append('<script src="/reload/reload-client.js"></script>');
+      $document('body').append(`
+        <script>
+          var article = document.getElementsByTagName('ARTICLE')[0];
+          var h1 = document.createElement('H1');
+          var t1 = document.createTextNode('docObject');
+          h1.appendChild(t1);
+          var pre = document.createElement('PRE');
+          pre.className = 'prettyprint lang-json';
+          var t2 = document.createTextNode(JSON.stringify(docObject, null, '  '));
+          pre.appendChild(t2);
+          article.appendChild(h1);
+          article.appendChild(pre);
+        </script>
+      `);
       send($document.html());
     }
   }));
