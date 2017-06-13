@@ -6,8 +6,8 @@
   },
   "restart": {
     "include": [
-      "server.js",
-      "glitch-please.js"
+      "^server\\.js$",
+      "^glitch-please\\.js$"
     ]
   },
   "throttle": 100
