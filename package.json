@@ -4,10 +4,14 @@
   "description": "Playground for bit-docs.",
   "main": "server.js",
   "scripts": {
-    "install": "bit-docs && ./patch.sh && npm run gen",
-    "gen": "bit-docs -d",
+    "install": "npm run gen && npm run patch",
+    "prestart": "[ -z $PROJECT_DOMAIN ] && ./play.sh local || ./play.sh glitch",
     "start": "node server.js",
-    "cache-bust": "rm -rf ./doc ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/templates ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/static && bit-docs -f"
+    "gen": "./play.sh start && bit-docs -d && ./play.sh finish",
+    "patch": "npm run clean-dest && ./play.sh patch && npm run gen",
+    "clean-dest": "rm -rf ${npm_package_bit_docs_dest:-./doc}",
+    "cache-bust": "rm -rf ./node_modules/bit-docs/lib/configure/node_modules/bit-docs-generate-html/site/{static,templates} && npm run clean-dest && npm run gen",
+    "force-build": "rm -rf ./node_modules/bit-docs/lib/configure/node_modules && ./play.sh start && bit-docs -fd && ./play.sh finish && npm run patch"
   },
   "repository": {
     "type": "git",
